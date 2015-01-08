@@ -31,7 +31,6 @@ ext {
 
 repositories {
     maven { url 'http://artifactory/artifactory/libs-release-local' }
-    maven { url 'http://artifactory/artifactory/resin-hessian' }
     mavenCentral()
     maven {
         url 'https://repository.apache.org/content/groups/public'
@@ -41,7 +40,6 @@ repositories {
 
 dependencies {
 
-    compile("com.caucho:resin-hessian:4.0.23")
     compile("mysql:mysql-connector-java")
     compile('org.springframework.boot:spring-boot-starter-web:1.2.0.RELEASE')
     compile("org.springframework.boot:spring-boot-starter-batch:1.2.0.RELEASE")
