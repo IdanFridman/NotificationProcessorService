@@ -1,15 +1,21 @@
 package com.notification.processor.service.batch.conf.flow;
 
-import com.notification.processor.service.batch.tasks.WriteToKafkaTasklet;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import com.notification.processor.service.batch.dto.PushItemDTO;
 import com.notification.processor.service.batch.mappers.PushItemFieldSetMapper;
 import com.notification.processor.service.batch.tasks.DownloadFileTasklet;
+import com.notification.processor.service.batch.tasks.WriteToKafkaTasklet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.ItemStreamReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
@@ -18,11 +24,11 @@ import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.io.FileSystemResource;
-
-import javax.inject.Inject;
-import java.util.List;
 
 /**
  * Created by Ext_IdanF on 28/12/2014.
@@ -97,11 +103,11 @@ public class BatchConfiguration {
 
     @Bean
     @Scope(value = "step", proxyMode = ScopedProxyMode.INTERFACES)
-    public FlatFileItemReader<PushItemDTO> reader(@Value("#{jobParameters[pathToFile]}") String pathToFile) {
+    public ItemStreamReader<PushItemDTO> reader(@Value("#{jobParameters[pathToFile]}") String pathToFile) {
         FlatFileItemReader<PushItemDTO> itemReader = new FlatFileItemReader<PushItemDTO>();
         itemReader.setLineMapper(lineMapper());
         itemReader.setLinesToSkip(1);
-        itemReader.setResource(new FileSystemResource("c:/newfile.txt"));
+        itemReader.setResource(new FileSystemResource(pathToFile));
         return itemReader;
     }
 
