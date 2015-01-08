@@ -1,12 +1,11 @@
 package com.notification.processor.service.batch.tasks;
 
-import com.notification.processor.service.batch.dto.KafkaMsgDTO;
+import javax.inject.Named;
+
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
-
-import javax.inject.Named;
 
 /**
  * Created by Ext_IdanF on 31/12/2014.
