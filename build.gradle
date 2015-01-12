@@ -25,12 +25,11 @@ jar {
 }
 
 ext {
-    springIntegrationVersion = '3.0.6.RELEASE'
     springIntegrationKafkaVersion = '1.0.0.M2'
 }
 
 repositories {
-    maven { url 'http://artifactory/artifactory/libs-release-local' }
+    maven { url 'http://artifactory/artifactory/resin-hessian' }
     mavenCentral()
     maven {
         url 'https://repository.apache.org/content/groups/public'
@@ -39,7 +38,7 @@ repositories {
 }
 
 dependencies {
-
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("mysql:mysql-connector-java")
     compile('org.springframework.boot:spring-boot-starter-web:1.2.0.RELEASE')
     compile("org.springframework.boot:spring-boot-starter-batch:1.2.0.RELEASE")

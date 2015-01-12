@@ -5,6 +5,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
+
+
     <bean id="jobBuilderFactory" class="org.springframework.batch.core.configuration.annotation.JobBuilderFactory">
         <constructor-arg ref="jobRepository"/>
     </bean>
@@ -18,7 +20,7 @@
           class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean"
           p:dataSource-ref="dataSource" p:transactionManager-ref="transactionManager"/>
 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${batch.jdbc.driver}"/>
         <property name="url" value="${batch.jdbc.url}"/>
         <property name="username" value="${batch.jdbc.user}"/>
@@ -50,5 +52,8 @@
           lazy-init="true">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+
+
 </beans>
 
