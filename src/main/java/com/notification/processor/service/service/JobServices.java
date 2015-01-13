@@ -36,7 +36,6 @@ public class JobServices {
 
     public StatusResponse startProcessFileJobExecution(ProcessFileRequestDTO processFileRequestDTO) {
         //TODO: genereate refId
-        saveToDB();
         String filePath= processFileRequestDTO.getFilePath();
         String jobId= processFileRequestDTO.getJobId();
         String taskId= processFileRequestDTO.getTaskId();

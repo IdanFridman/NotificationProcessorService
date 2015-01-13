@@ -18,7 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ImportResource({
         "classpath:integration-context.xml", "classpath:launch-context.xml","classpath:spring-context-orm.xml"}) //"classpath:applicationContext-NotificationProcessorService.xml"
 //})
-//@EnableJpaRepositories(basePackages = {"com.notification.processor.service.dao"})
+@EnableJpaRepositories(basePackages = {"com.notification.processor.service.dao"})
 //@Import({ ServletConfiguration.class, WebappConfiguration.class })
 public class Application {
     public static void main(String[] args) {
