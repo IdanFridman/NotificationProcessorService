@@ -1,12 +1,11 @@
 package com.notification.processor.service.batch.tasks;
 
-import com.notification.processor.service.dao.NotificationRepository;
+import com.notification.processor.service.dao.NotificationDao;
 import com.notification.processor.service.entities.NotificationJobEntity;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,7 +19,7 @@ public class LogJobStatusToDBTasklet implements Tasklet {
 
 
     @Inject
-    NotificationRepository notificationRepository;
+    NotificationDao notificationDao;
 
     @Override
 
@@ -45,7 +44,7 @@ public class LogJobStatusToDBTasklet implements Tasklet {
         //  notificationJobEntity.getNotificationTaskEntities().add(notificationTaskEntity);
         try {
 
-            notificationRepository.save(notificationJobEntity);
+         //   notificationRepository.save(notificationJobEntity);
         } catch (Exception e) {
             e.printStackTrace();
         }

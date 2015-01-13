@@ -48,10 +48,21 @@
         <property name="jobRepository" ref="jobRepository"/>
     </bean>
 
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+  <!--  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
           lazy-init="true">
         <property name="dataSource" ref="dataSource"/>
+    </bean>-->
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+        <property name="dataSource" ref="dataSource" />
     </bean>
+
+    <bean id="persistenceAnnotation"
+          class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+
+
 
 
 
