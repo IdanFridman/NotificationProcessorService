@@ -13,6 +13,7 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemStreamReader;
 import org.springframework.batch.item.ItemWriter;
@@ -48,8 +49,7 @@ public class ProcessFileJob {
     private static final String OVERRIDDEN_BY_EXPRESSION = null;
 
 
-    @Autowired
-    private LogJobStatusToDBTasklet logJobStatusToDBTasklet;
+   // private LogJobStatusToDBTasklet logJobStatusToDBTasklet;
 
 
     @Inject
@@ -83,7 +83,12 @@ public class ProcessFileJob {
 
 
     private Step logJobStatusToDBTasklet() {
-        return this.steps.get("step7").tasklet(logJobStatusToDBTasklet).build();
+        return this.steps.get("step7").tasklet(tasklet()).build();
+    }
+
+    @Bean
+    protected Tasklet tasklet() {
+        return new LogJobStatusToDBTasklet();
     }
 
 

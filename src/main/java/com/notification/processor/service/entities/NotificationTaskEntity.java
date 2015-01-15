@@ -16,7 +16,6 @@ public class NotificationTaskEntity implements Serializable{
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long taskId;
 
-    private int jobId;
 
     private String refId;
 
@@ -26,11 +25,11 @@ public class NotificationTaskEntity implements Serializable{
     private Date createdDate;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name = "jobId")
     private NotificationJobEntity notificationJobEntity;
 
 
-    public NotificationTaskEntity(int jobId, String refId, String status, Date createdDate, NotificationJobEntity notificationJobEntity) {
-        this.jobId = jobId;
+    public NotificationTaskEntity(String refId, String status, Date createdDate, NotificationJobEntity notificationJobEntity) {
         this.refId = refId;
         this.status = status;
         this.createdDate = createdDate;
@@ -46,14 +45,6 @@ public class NotificationTaskEntity implements Serializable{
 
     public void setTaskId(long taskId) {
         this.taskId = taskId;
-    }
-
-    public int getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(int jobId) {
-        this.jobId = jobId;
     }
 
     public String getRefId() {
@@ -92,7 +83,6 @@ public class NotificationTaskEntity implements Serializable{
     public String toString() {
         return "NotificationTaskEntity{" +
                 "taskId=" + taskId +
-                ", jobId=" + jobId +
                 ", refId='" + refId + '\'' +
                 ", status='" + status + '\'' +
                 ", createdDate=" + createdDate +

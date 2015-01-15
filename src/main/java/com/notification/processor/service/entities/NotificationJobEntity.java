@@ -21,7 +21,7 @@ public class NotificationJobEntity implements Serializable{
     private Date createdDate;
     private String messageBody;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "notificationJobEntity")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "notificationJobEntity", cascade=CascadeType.ALL)
     private Set<NotificationTaskEntity> notificationTaskEntities = new HashSet<NotificationTaskEntity>(
             0);
 

@@ -4,6 +4,7 @@ import com.notification.processor.service.api.StatusResponse;
 import com.notification.processor.service.batch.dto.ProcessFileRequestDTO;
 import com.notification.processor.service.dao.NotificationDao;
 import com.notification.processor.service.entities.NotificationJobEntity;
+import com.notification.processor.service.entities.NotificationTaskEntity;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -53,30 +54,26 @@ public class JobServices {
         }
     }
 
-    public void saveToDB() {
-
-        NotificationJobEntity notificationJobEntity=new NotificationJobEntity();
-        notificationJobEntity.setCreatedDate(new Date());
-        notificationJobEntity.setMessageBody("hello youu");
-        notificationJobEntity.setSegmentId("3aa");
-        //  NotificationTaskEntity notificationTaskEntity=new NotificationTaskEntity();
-        //  notificationTaskEntity.setCreatedDate(new Date());
-        //  notificationTaskEntity.setRefId("23");
-        //  notificationTaskEntity.setStatus("success");
-        //  notificationTaskEntity.setNotificationJobEntity(notificationJobEntity);
-        //  notificationJobEntity.getNotificationTaskEntities().add(notificationTaskEntity);
-        try {
-            this.save(notificationJobEntity);
-            // notificationRepository.flush();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public NotificationJobEntity save(NotificationJobEntity entity) {
-        return notificationDao.save(entity);
+    public NotificationJobEntity save() {
+        NotificationJobEntity notificationJobEntity=new NotificationJobEntity();
+        notificationJobEntity.setCreatedDate(new Date());
+        notificationJobEntity.setMessageBody("hell2o y66666ouu");
+        notificationJobEntity.setSegmentId("3a33a");
+
+
+          NotificationTaskEntity notificationTaskEntity=new NotificationTaskEntity();
+          notificationTaskEntity.setCreatedDate(new Date());
+          notificationTaskEntity.setRefId("2455663");
+          notificationTaskEntity.setStatus("succ22ess");
+          notificationTaskEntity.setNotificationJobEntity(notificationJobEntity);
+
+        notificationTaskEntity.setNotificationJobEntity(notificationJobEntity);
+        notificationJobEntity.getNotificationTaskEntities().add(notificationTaskEntity);
+
+        return notificationDao.save(notificationJobEntity);
+            // notificationRepository.flush();
+
     }
 }
